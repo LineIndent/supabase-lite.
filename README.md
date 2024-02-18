@@ -1,13 +1,6 @@
-# Welcome to Reflex!
+# Introduction
 
-This is the base Reflex template - installed when you run `reflex init`.
-
-If you want to use a different template, pass the `--template` flag to `reflex init`.
-For example, if you want a more basic starting point, you can run:
-
-```bash
-reflex init --template blank
-```
+This lightweight web application is designed for testing `Supabase API` endpoints. The took itself simplifies the process of interacting with Supabase API's, making endpoint testing user-friendly. The entire application is built using `Reflex`.
 
 ## About this Template
 

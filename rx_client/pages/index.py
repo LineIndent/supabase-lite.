@@ -1,4 +1,5 @@
 import reflex as rx
+from rx_client.components.landing import render_landing
 from rx_client.components.header import render_header
 from rx_client.components.footer import render_footer
 from rx_client.components.title import render_title
@@ -48,7 +49,7 @@ def client() -> rx.Component:
     """
 
     return rx.vstack(
-        # render_header(),
+        render_landing(),
         rx.hstack(
             render_title(),
             rx.hstack(render_supabase_status(), render_reflex_status(), spacing="5"),

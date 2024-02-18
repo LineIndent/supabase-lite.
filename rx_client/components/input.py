@@ -11,31 +11,23 @@ from rx_client.states import (
 )
 
 BOX = {
-    # "height": "40vh",
     "overflow": "hidden",
     "flex": ["100%", "100%", "100%", "30%", "30%"],
     "entry_ui": {
-        "border_bottom": "1px solid #404040",
+        "border_bottom": "1px solid #373a3e",
         "width": "100%",
-        "title": {
-            "font_size": "12px",
-            "font_golor": "#404040",
-        },
+        "title": {"font_size": "12px"},
     },
     "key_value_stack": {
         "width": "100%",
-        "border_top": "1px solid #404040",
+        "border_top": "1px solid red",
         "border_bottom": "1px solid #404040",
         "padding_left": ["1rem", "1rem", "1rem", "3rem", "3rem"],
     },
-    "key_value_type": {
-        "opacity": "0.61",
-        "width": "60px",
-        "font_size": "12px",
-    },
+    "key_value_type": {"opacity": "0.61", "width": "60px", "font_size": "12px"},
     "web_object": {
         "width": "100%",
-        "border_bottom": "1px solid #404040",
+        "border_bottom": "1px solid #373a3e",
         "padding": "1em 0em",
         "display": "flex",
         "align_items": "center",
@@ -184,7 +176,7 @@ def render_input_box():
             width="100%",
             display="flex",
             justify_content="end",
-            padding_top="2em",
+            padding_top="1.25em",
         ),
         spacing="5",
         style=BOX,

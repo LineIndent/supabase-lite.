@@ -103,6 +103,6 @@ def render_footer():
         render_socials("Social Media", SOCIALS),
         render_attribute(),
         width="100%",
-        border="1px solid #404040",
+        border_top="1px solid #373a3e",
         padding="4em 0em 0em 0em",
     )
