@@ -13,7 +13,7 @@ theme_button = rx.button(
         rx.icon(tag="sun"),
     ),
     variant="ghost",
-    on_click=rx.toggle_color_mode,
+    # on_click=rx.toggle_color_mode,
     transform="scale(0.8)",
 )
 

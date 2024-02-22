@@ -49,6 +49,7 @@ def client() -> rx.Component:
     """
 
     return rx.vstack(
+        render_header(),
         render_landing(),
         rx.hstack(
             render_title(),

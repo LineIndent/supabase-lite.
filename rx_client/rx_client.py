@@ -5,4 +5,4 @@ import reflex as rx
 from rx_client.pages import *
 
 
-app = rx.App(theme=rx.theme(appearance="dark"))
+app = rx.App(style=rx.theme(appearance="dark"))

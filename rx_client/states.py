@@ -158,6 +158,7 @@ class RequestAPI(State):
     output: str
 
     async def start_request_process(self):
+        self.output = ""
         client = getattr(self, self.method.lower())
 
         await client()
@@ -171,8 +172,11 @@ class RequestAPI(State):
                     self.url, headers={x.key: x.value for x in self.headers}
                 )
 
-                if self.moth == "GET":
+                if self.method == "GET":
                     self.output = json.dumps(response.json(), indent=4, sort_keys=True)
+
+                elif self.method == "DELETE":
+                    print(response)
 
             if self.method in ("POST"):
                 try:
