@@ -2,6 +2,10 @@
 
 This lightweight web application is designed for testing `Supabase API` endpoints. The tool itself simplifies the process of interacting with Supabase API's, making endpoint testing user-friendly. The entire application is built using `Reflex`.
 
+
+<img src="./assets/p1.png">
+<img src="./assets/p2.png">
+
 ## What you need to get started
 
 To use this API client you'll need to have several things:
