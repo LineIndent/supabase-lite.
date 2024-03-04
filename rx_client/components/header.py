@@ -13,7 +13,6 @@ theme_button = rx.button(
         rx.icon(tag="sun"),
     ),
     variant="ghost",
-    # on_click=rx.toggle_color_mode,
     transform="scale(0.8)",
 )
 
@@ -24,8 +23,14 @@ def render_header():
     Returns:
         rx.Hstack: The UI component for header.
     """
+    BASE_FONT: int = 14
+
     return rx.hstack(
+        rx.heading(
+            "Supabase API Client",
+            font_size=[f"{BASE_FONT * (1.2**index)}px" for index in range(5)],
+            transition="all 550ms ease",
+        ),
         rx.spacer(),
-        theme_button,
         style=HEADER,
     )
