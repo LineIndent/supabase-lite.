@@ -11,15 +11,29 @@ class WebObject(rx.Base):
 
 
 class State(rx.State):
+    # main backend vars
     api_key: str
     project_url: str
     node: str
     method: str
 
+    # method tags
+    method_tags: list[list[str]] = [
+        ["GET", "gray"],
+        ["POST", "gray"],
+        ["PATCH", "gray"],
+        ["DELETE", "gray"],
+        ["LOGIN", "gray"],
+        ["LOGOUT", "gray"],
+        ["SIGNUP", "gray"],
+    ]
+
+    # client  vars
     headers: list[WebObject]
     datas: list[WebObject]
     specific: list[WebObject]
 
+    # miscll..
     supabase_status: str
     supabase_status_color: str
 
@@ -150,6 +164,16 @@ class Update(State):
         )
 
         await self.update_list(_object, object)
+
+    async def update_tag(self, tag: list[str]):
+        new_tag = [tag[0], "grass"]
+
+        self.method_tags = [
+            new_tag if tag[0] == new_tag[0] else [tag[0], "gray"]
+            for tag in self.method_tags
+        ]
+
+        self.method = new_tag[0]
 
 
 class RequestAPI(State):

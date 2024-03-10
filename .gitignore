@@ -1,5 +1,6 @@
 *.db
 *.py[cod]
+.DS_Store
 .web
 __pycache__/
 venv

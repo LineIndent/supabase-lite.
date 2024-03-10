@@ -2,7 +2,7 @@ import reflex as rx
 
 HEADER: dict = {
     "width": "100%",
-    "padding": "1em 2em",
+    "padding": ["1em 2em", "1em 2em", "1em 4em", "1em 4em", "1em 4em"],
     "border_bottom": "1px solid #404040",
 }
 
@@ -23,7 +23,7 @@ def render_header():
     Returns:
         rx.Hstack: The UI component for header.
     """
-    BASE_FONT: int = 14
+    BASE_FONT: int = 12
 
     return rx.hstack(
         rx.heading(

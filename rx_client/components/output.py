@@ -4,10 +4,9 @@ from rx_client.states import RequestAPI
 
 
 BOX = {
-    "height": "60vh",
+    "height": "90vh",
     "border": "1px solid #31353b",
     "border_radius": "10px",
-    "bg": "none",
     "spacing": "0",
     "flex": ["100%", "100%", "100%", "65%", "65%"],
     "overflow": "hidden",

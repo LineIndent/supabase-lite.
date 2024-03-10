@@ -9,6 +9,13 @@ from rx_client.components.input import render_input_box
 
 from rx_client.states import Status
 
+DOTS: dict = {
+    "@keyframes dots": {
+        "0%": {"background_position": "0 0"},
+        "100%": {"background_position": "40px 40px"},
+    },
+    "animation": "dots 4s linear infinite",
+}
 
 CLIENT: dict[str, str] = {
     "width": "100%",
@@ -41,6 +48,7 @@ CLIENT: dict[str, str] = {
 }
 
 
+# @rx.page("/")
 @rx.page("/", on_load=[Status.get_supabase_status, Status.get_reflex_status])
 def client() -> rx.Component:
     """The client page.
@@ -50,16 +58,11 @@ def client() -> rx.Component:
 
     return rx.vstack(
         render_header(),
-        render_landing(),
+        # render_landing(),
         rx.hstack(
-            render_title(),
+            # render_title(),
             rx.hstack(render_supabase_status(), render_reflex_status(), spacing="5"),
             style=CLIENT.get("title_and_status"),
-        ),
-        rx.box(
-            rx.divider(size="3", width="100%"),
-            padding=["0em 2em", "0em 2em", "0em 4em", "0em 4em", "0em 4em"],
-            width="100%",
         ),
         rx.hstack(
             render_output_box(),

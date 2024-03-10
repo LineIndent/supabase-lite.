@@ -39,6 +39,16 @@ BOX = {
         "width": "100%",
         "padding_left": "0.5em",
     },
+    "tags": {
+        "width": "100%",
+        "display": "flex",
+        "flex_wrap": "wrap",
+        "justify_content": "start",
+        "align_items": "start",
+        "gap": "0.65em 0.45em",
+        "padding_top": "0.35em",
+        "padding_bottom": "0.85em",
+    },
 }
 
 
@@ -88,6 +98,18 @@ def create_web_object_ui(title: str, _type_: str):
     )
 
 
+def render_tag_badge(tag: list[str]):
+    return rx.badge(
+        tag[0],
+        variant="surface",
+        color_scheme=tag[1],
+        on_click=Update.update_tag(tag),
+        cursor="pointer",
+        transition="all 450ms ease",
+        size="1",
+    )
+
+
 def render_input_box():
     """_summary_
 
@@ -129,16 +151,17 @@ def render_input_box():
                 width="100%",
             ),
         ),
-        create_entry_ui(
-            f"Method",
-            rx.box(
-                render_text_entry(
-                    State.method,
-                    "Request Method Type",
-                    State.set_method,
-                ),
-                width="100%",
+        # method tags ...
+        rx.vstack(
+            rx.text("Select Method", style=BOX.get("entry_ui").get("title")),
+            rx.hstack(
+                rx.foreach(State.method_tags, render_tag_badge),
+                spacing="3",
+                style=BOX.get("tags"),
             ),
+            border_bottom="1px solid #373a3e",
+            spacing="1",
+            width="100%",
         ),
         rx.vstack(
             create_web_object_ui("Header", "H"),
@@ -164,18 +187,23 @@ def render_input_box():
             ),
             width="100%",
         ),
-        rx.box(
+        rx.hstack(
             rx.badge(
-                "Send Request",
-                on_click=RequestAPI.start_request_process,
-                variant="outline",
+                rx.text(
+                    "Send Request",
+                    text_align="center",
+                    width="100%",
+                ),
                 color_scheme="grass",
+                variant="surface",
                 size="2",
+                radius="none",
+                padding="1em",
                 cursor="pointer",
+                on_click=RequestAPI.start_request_process,
+                width="100%",
             ),
             width="100%",
-            display="flex",
-            justify_content="end",
             padding_top="1.25em",
         ),
         spacing="5",
