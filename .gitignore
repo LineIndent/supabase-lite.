@@ -4,5 +4,4 @@
 .web
 __pycache__/
 venv
-z.py
 .idea
