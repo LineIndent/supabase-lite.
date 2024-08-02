@@ -1,13 +1,9 @@
 import reflex as rx
-from rx_client.components.landing import render_landing
-from rx_client.components.header import render_header
-from rx_client.components.footer import render_footer
-from rx_client.components.title import render_title
-from rx_client.components.status import render_supabase_status, render_reflex_status
-from rx_client.components.output import render_output_box
-from rx_client.components.input import render_input_box
 
-from rx_client.states import Status
+from ..components.navbar import render_navbar
+from ..components.output import render_output_box
+from ..components.input import render_input_box
+
 
 DOTS: dict = {
     "@keyframes dots": {
@@ -43,13 +39,12 @@ CLIENT: dict[str, str] = {
             "wrap-reverse",
             "wrap",
         ],
-        "padding": ["2em 2em", "2em 2em", "2em 4em", "2em 4em", "2em 4em"],
+        "padding": "2em",
     },
 }
 
 
-# @rx.page("/")
-@rx.page("/", on_load=[Status.get_supabase_status, Status.get_reflex_status])
+@rx.page("/")
 def client() -> rx.Component:
     """The client page.
     Returns:
@@ -57,19 +52,16 @@ def client() -> rx.Component:
     """
 
     return rx.vstack(
-        render_header(),
-        # render_landing(),
+        render_navbar(),
         rx.hstack(
-            # render_title(),
-            rx.hstack(render_supabase_status(), render_reflex_status(), spacing="5"),
-            style=CLIENT.get("title_and_status"),
-        ),
-        rx.hstack(
-            render_output_box(),
             render_input_box(),
+            render_output_box(),
             spacing="6",
             style=CLIENT.get("data_boxes"),
         ),
-        render_footer(),
         style=CLIENT,
+        background="#161718",
+        width="100%",
+        min_height="100vh",
+        font_family="Futura",
     )
