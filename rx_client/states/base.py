@@ -10,10 +10,8 @@ class WebObject(rx.Base):
 
 class Base(rx.State):
     #
-    base_url: str = "https://cyzkwzkegoveaadgenkl.supabase.co"
-    anon_key: str = (
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN5emt3emtlZ292ZWFhZGdlbmtsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTAzMTQ1MDgsImV4cCI6MjAyNTg5MDUwOH0.S-ELfKSCYBJHurzIK-iQaNQWJph110kvUdIs2N2QOyw"
-    )
+    base_url: str
+    anon_key: str
     table: str
     column: str
 
