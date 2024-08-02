@@ -1,14 +1,10 @@
 import reflex as rx
 
-from rx_client.components.entry import render_text_entry, render_key_value_entries
-from rx_client.states import (
-    AddObject,
-    RequestAPI,
-    ResetObject,
-    State,
-    Update,
-    WebObject,
-)
+from ..components.entry import render_text_entry, render_key_value_entries
+
+from ..states.base import Base
+from ..states.process import Process
+from ..states.updates import AddObject, ResetObject, Update, WebObject
 
 BOX = {
     "overflow": "hidden",
@@ -73,7 +69,7 @@ def create_key_value_entry_ui(object: WebObject):
     )
 
 
-def create_web_object_ui(title: str, _type_: str):
+def create_web_object_ui(title: str, _type_: str, attr: str):
     return rx.hstack(
         rx.text(
             title,
@@ -122,9 +118,9 @@ def render_input_box():
             "Supabase API Key",
             rx.box(
                 render_text_entry(
-                    State.api_key,
+                    Base.anon_key,
                     "Supabase API Key",
-                    State.set_api_key,
+                    Base.set_anon_key,
                 ),
                 width="100%",
             ),
@@ -133,56 +129,58 @@ def render_input_box():
             "Supabase Project URL",
             rx.box(
                 render_text_entry(
-                    State.project_url,
+                    Base.base_url,
                     "Supabase Project URL",
-                    State.set_project_url,
+                    Base.set_base_url,
                 ),
                 width="100%",
             ),
         ),
         create_entry_ui(
-            "Node Name",
+            "Table Name",
             rx.box(
                 render_text_entry(
-                    State.node,
-                    "Supabase API Key",
-                    State.set_node,
+                    Base.table,
+                    "Table Name",
+                    Base.set_table,
                 ),
                 width="100%",
             ),
         ),
-        # method tags ...
+        create_entry_ui(
+            "Column",
+            rx.box(
+                render_text_entry(
+                    Base.column,
+                    "Column name to be retrieved. All = *",
+                    Base.set_column,
+                ),
+                width="100%",
+            ),
+        ),
         rx.vstack(
             rx.text("Select Method", style=BOX.get("entry_ui").get("title")),
-            rx.hstack(
-                rx.foreach(State.method_tags, render_tag_badge),
-                spacing="3",
-                style=BOX.get("tags"),
+            rx.select(
+                Base.method_list,
+                placeholder="Select Method",
+                width="100%",
+                on_change=Process.toggle_method_selection,
             ),
-            border_bottom="1px solid #373a3e",
             spacing="1",
             width="100%",
         ),
         rx.vstack(
-            create_web_object_ui("Header", "H"),
+            create_web_object_ui("Header", "H", "add_new_header"),
             rx.foreach(
-                State.headers,
+                Base.headers,
                 create_key_value_entry_ui,
             ),
             width="100%",
         ),
         rx.vstack(
-            create_web_object_ui("Data", "D"),
+            create_web_object_ui("Data", "D", "add_new_data"),
             rx.foreach(
-                State.datas,
-                create_key_value_entry_ui,
-            ),
-            width="100%",
-        ),
-        rx.vstack(
-            create_web_object_ui("Specific", "S"),
-            rx.foreach(
-                State.specific,
+                Base.datas,
                 create_key_value_entry_ui,
             ),
             width="100%",
@@ -200,7 +198,7 @@ def render_input_box():
                 radius="none",
                 padding="1em",
                 cursor="pointer",
-                on_click=RequestAPI.start_request_process,
+                on_click=Process.run_request,
                 width="100%",
             ),
             width="100%",

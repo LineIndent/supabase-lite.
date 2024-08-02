@@ -1,15 +1,15 @@
 import reflex as rx
-from rx_client.states import WebObject
+from ..states.base import WebObject
 
 
 def render_text_entry(value: str, placeholder: str, update: rx.State):
-    return rx.input(
+    return rx.chakra.input(
         value=value,
         placeholder=placeholder,
         on_change=update,
-        variant=rx.Var.create("none"),
-        padding="1em 0em",
+        height="32px",
         outline="none",
+        variant="unstyled",
     )
 
 
